@@ -1,15 +1,13 @@
-import React from "react";
-import styles from "./index.less";
-import { Alert, Card, Row, Col, Typography } from "antd";
+import React from 'react';
+import styles from './index.less';
+import { Alert, Card, Row, Col, Typography } from 'antd';
 import BarCodeHistory from '../BarCodeHistory';
 import SkuQueue from '../SkuQueue';
 
 const CodePreview = ({ children }) => (
   <pre className={styles.pre}>
     <code>
-      <Typography.Text copyable>
-        {children}
-      </Typography.Text>
+      <Typography.Text copyable>{children}</Typography.Text>
     </code>
   </pre>
 );
@@ -29,20 +27,18 @@ export default () => (
                     </p>
                   </Typography.Text>
                 </Col>
-                <Col offset={3}>
-                  <CodePreview>
-                    B50647853
-                  </CodePreview>
+                <Col offset={3} className="code-results">
+                  <CodePreview>B50647853</CodePreview>
                 </Col>
               </Row>
               <Row>
-                <BarCodeHistory/>
+                <BarCodeHistory />
               </Row>
             </Card>
           </Col>
           <Col span={10}>
             <Card value={80} className={styles.tableFlex}>
-              <SkuQueue/>
+              <SkuQueue />
             </Card>
           </Col>
         </Row>

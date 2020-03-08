@@ -1,9 +1,9 @@
-import React, { Component } from '_react@16.12.0@react';
+import React, { Component } from 'react';
 import './RobFlashWindow.css';
 import 'whatwg-fetch';
 
 class Ball {
-  constructor(){
+  constructor() {
     this.x = 0;
     this.y = 400;
     this.radius = 6;
@@ -14,65 +14,59 @@ class Ball {
     console.log('start new animation');
   }
 
-  draw = (ctx) => {
+  draw = ctx => {
     ctx.beginPath();
     ctx.arc(this.x + 20, this.y + 20, this.radius, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fillStyle = this.color;
     ctx.fill();
-  }
+  };
 }
 
 class BotRepo {
-
-  constructor () {
+  constructor() {
     this.botList = {};
     this.agingTime = {};
     this.botNum = 0;
-    this.colorList = ['blue','yellow','red','brown','green','pink'];
+    this.colorList = ['blue', 'yellow', 'red', 'brown', 'green', 'pink'];
   }
 
-  addRob(id){
+  addRob(id) {
     const ball = new Ball();
-    ball.color = this.colorList[id % this.colorList.length - 1];
+    ball.color = this.colorList[(id % this.colorList.length) - 1];
     this.botList[id] = ball;
     this.botNum += 1;
     return ball;
   }
 
-  deleteRob(id){
+  deleteRob(id) {
     this.botList[id] = undefined;
-    this.botNum-=1;
+    this.botNum -= 1;
   }
 
-  increaseAgingTime(){
+  increaseAgingTime() {
     let robId = 0;
     let robNum = 0;
-    while(robNum<this.botNum)
-    {
-      if(this.botList[robId] !== undefined)
-      {
-        this.agingTime[robId] +=1;
-        if((this.agingTime[robId] > 6) && (this.botList[robId] !== undefined))
-          this.deleteRob(robId);
-        robNum+=1;
+    while (robNum < this.botNum) {
+      if (this.botList[robId] !== undefined) {
+        this.agingTime[robId] += 1;
+        if (this.agingTime[robId] > 6 && this.botList[robId] !== undefined) this.deleteRob(robId);
+        robNum += 1;
       }
-      robId+=1;
+      robId += 1;
     }
   }
 
-  clearUpAgingTime(id){
+  clearUpAgingTime(id) {
     this.agingTime[id] = 0;
   }
 
-  getBotNum()
-  {
+  getBotNum() {
     return this.botNum;
   }
 }
 
-class RobFlashWindow extends Component{
-
+class RobFlashWindow extends Component {
   componentDidMount() {
     const interval = 300 / 5;
     let startTime = null;
@@ -87,7 +81,7 @@ class RobFlashWindow extends Component{
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     const gBotList = new BotRepo();
 
-    const draw = (time) => {
+    const draw = time => {
       if (!startTime) {
         startTime = time;
       }
@@ -96,10 +90,8 @@ class RobFlashWindow extends Component{
       let robNum = 0;
       ctx.fillStyle = 'rgb(163,188,255)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      while(robNum<gBotList.getBotNum())
-      {
-        if(gBotList.botList[robId] !== undefined)
-        {
+      while (robNum < gBotList.getBotNum()) {
+        if (gBotList.botList[robId] !== undefined) {
           const curX = prevX[robId] + (nextX[robId] - prevX[robId]) * delta;
           const curY = 240 - (prevY[robId] + (nextY[robId] - prevY[robId]) * delta);
           gBotList.botList[robId].draw(ctx);
@@ -107,51 +99,48 @@ class RobFlashWindow extends Component{
           console.log(gBotList.botList[robId].y);
           gBotList.botList[robId].x = curX;
           gBotList.botList[robId].y = curY;
-          robNum+=1;
+          robNum += 1;
         }
-        robId+=1;
+        robId += 1;
       }
     };
 
-    setInterval(async function () {
-      const bots = await fetch(
-        'http://localhost:4000/dashboard/robData', {
-          method: 'GET',
-          mode: 'cors',
-          headers:{
-            'Accept':'application/json,text/plain,*/*'
-          },
-        }).then(res => res.json());
+    setInterval(async function() {
+      const bots = await fetch('http://localhost:4000/dashboard/robData', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          Accept: 'application/json,text/plain,*/*',
+        },
+      }).then(res => res.json());
 
-      console.log("Receive robData!\n");
+      console.log('Receive robData!\n');
       let robId = 0;
       gBotList.increaseAgingTime();
-      for(let index = 0;index<bots.length; index++)
-      {
-        robId =  bots[index].id;
+      for (let index = 0; index < bots.length; index++) {
+        robId = bots[index].id;
         gBotList.clearUpAgingTime(robId);
-        if(gBotList.botList[robId] === undefined)
-        {
+        if (gBotList.botList[robId] === undefined) {
           gBotList.addRob(robId);
-          console.log("New rob!");
+          console.log('New rob!');
         }
         prevX[robId] = nextX[robId];
         prevY[robId] = nextY[robId];
-        nextX[robId] = (bots[index].coor.array[0] || 0)/1.65;
-        nextY[robId] = (bots[index].coor.array[1] || 0)/1.65;
+        nextX[robId] = (bots[index].coor.array[0] || 0) / 1.65;
+        nextY[robId] = (bots[index].coor.array[1] || 0) / 1.65;
         startTime = null;
       }
       window.requestAnimationFrame(draw);
     }, interval);
   }
 
-  render(){
+  render() {
     return (
       <div className="subcontainer">
         <canvas id="canvas" width="800" height="500"></canvas>
       </div>
-    )
+    );
   }
 }
 
-export default RobFlashWindow
+export default RobFlashWindow;

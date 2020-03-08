@@ -1,3 +1,23 @@
 .tableFlex {
   display: flex;
 }
+.code-results {
+  :global {
+    transition: 0.3s;
+    animation: 3s linear 1s 2 beat;
+    //   animation-name: beat;
+    //   animation-duration: 4s;
+  }
+}
+@keyframes beat {
+  from {
+    transform: scale(1);
+    text-shadow: unset;
+    color: unset;
+  }
+  to {
+    transform: scale(1.5);
+    text-shadow: 0 0 3px #1890ff;
+    color: #1890ff;
+  }
+}

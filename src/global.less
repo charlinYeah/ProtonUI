@@ -52,3 +52,60 @@ ol {
     min-height: 100vh;
   }
 }
+// 隐藏顶栏
+.ant-pro-page-header-wrap-page-header-warp,
+header.ant-layout-header {
+  display: none;
+}
+// 微调布局
+.ant-table-pagination.ant-pagination {
+  margin-bottom: 0;
+}
+.ant-alert-banner {
+  margin: 0 !important;
+}
+// 扫码结果
+.code-results {
+  font-size: 16px;
+}
+.code-results.beat {
+  animation-name: beat;
+  animation-duration: 0.5s;
+  animation-iteration-count: 2;
+}
+@keyframes beat {
+  0% {
+    transform: scale(1);
+    text-shadow: unset;
+    color: unset;
+  }
+  50% {
+    transform: scale(1.2);
+    text-shadow: 0 0 3px #1890ff;
+    color: #1890ff;
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: unset;
+    color: unset;
+  }
+}
+
+.antd-pro-pages-table-basic-index-detail.show {
+  display: block;
+}
+.ant-card.antd-pro-pages-grid-flex-align-index-tableFlex.ant-card-bordered {
+  .ant-card-body {
+    max-height: 328.297px;
+    overflow: auto;
+    box-sizing: content-box;
+  }
+}
+
+.consoleData {
+  background: white;
+  border-radius: 3px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px 0;
+}

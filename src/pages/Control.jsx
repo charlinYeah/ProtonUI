@@ -8,7 +8,7 @@ import FunctionControl from './FunctionControl';
 
 const divStyle = {
   color: 'blue',
-  background: `url(${require("./example2.jpg")})`,
+  background: `url(${require('./example2.jpg')})`,
 };
 
 export default () => (
@@ -26,28 +26,28 @@ export default () => (
               marginBottom: 24,
             }}
           >
+            <Row className="consoleData" type="flex" justify="center" align="top" gutter={12}>
+              <Col md={6} sm={12} xs={24}>
+                <Statistic title="总车数" suffix="辆" value={numeral(5).format('0,0')} />
+              </Col>
+              <Col md={6} sm={12} xs={24}>
+                <Statistic title="订单饱和率" value="47%" />
+              </Col>
+              <Col md={6} sm={12} xs={24}>
+                <Statistic title="总件数" suffix="件" value={numeral(229).format('0,0')} />
+              </Col>
+              <Col md={6} sm={12} xs={24}>
+                <Statistic title="总时长" suffix="秒" value={numeral(718).format('0,0')} />
+              </Col>
+            </Row>
             <Card title="实时观测台" bordered={false}>
               <div style={divStyle}>
-              <Row type="flex" justify="center" align="top" gutter={12}>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="总车数" suffix="辆" value={numeral(5).format('0,0')} />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="订单饱和率" value="47%" />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="总件数" suffix="件" value={numeral(229).format('0,0')} />
-                </Col>
-                <Col md={6} sm={12} xs={24}>
-                  <Statistic title="总时长" suffix="秒" value={numeral(718).format('0,0')} />
-                </Col>
-              </Row>
-              <Row
-                style={{
-                  marginTop: 16,
-                }}
-              ></Row>
-              <CarouselFade />
+                <Row
+                  style={{
+                    marginTop: 16,
+                  }}
+                ></Row>
+                <CarouselFade />
               </div>
             </Card>
           </Col>
