@@ -24,6 +24,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+aside + section.ant-layout {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 ul,
 ol {
   list-style: none;
@@ -75,19 +81,19 @@ header.ant-layout-header {
 }
 @keyframes beat {
   0% {
-    transform: scale(1);
-    text-shadow: unset;
     color: unset;
+    text-shadow: unset;
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
-    text-shadow: 0 0 3px #1890ff;
     color: #1890ff;
+    text-shadow: 0 0 3px #1890ff;
+    transform: scale(1.2);
   }
   100% {
-    transform: scale(1);
-    text-shadow: unset;
     color: unset;
+    text-shadow: unset;
+    transform: scale(1);
   }
 }
 
