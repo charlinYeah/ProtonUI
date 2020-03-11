@@ -14,6 +14,12 @@ body,
   min-height: 100vh;
 }
 
+.ant-btn.super-lg{
+    height: auto;
+    font-size: 22px;
+    padding: 12px 20px;
+}
+
 canvas {
   display: block;
 }
@@ -22,6 +28,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+aside + section.ant-layout {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 ul,
@@ -75,19 +87,19 @@ header.ant-layout-header {
 }
 @keyframes beat {
   0% {
-    transform: scale(1);
-    text-shadow: unset;
     color: unset;
+    text-shadow: unset;
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
-    text-shadow: 0 0 3px #1890ff;
     color: #1890ff;
+    text-shadow: 0 0 3px #1890ff;
+    transform: scale(1.2);
   }
   100% {
-    transform: scale(1);
-    text-shadow: unset;
     color: unset;
+    text-shadow: unset;
+    transform: scale(1);
   }
 }
 

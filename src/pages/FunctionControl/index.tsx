@@ -48,18 +48,18 @@ export default () => {
     <div id="components-button-demo-disabled">
       <div>
         <Row type="flex" justify="center" align="top" gutter={40}>
-          <Button type="primary" size={"large"}>
+          <Button type="primary" className="super-lg" size={"large"}>
             赠品模式
           </Button>
-          <Button type="primary" size={"large"} onClick={()=>buttonHandler(state.orderIndex.test)}>
+          <Button type="primary" className="super-lg" size={"large"} onClick={()=>buttonHandler(state.orderIndex.test)}>
             测试模式
           </Button>
         </Row>
         <Row type="flex" justify="center" align="top" gutter={40}>
-          <Button type="primary" size={"large"}>
+          <Button type="primary" className="super-lg" size={"large"}>
             重启统计
           </Button>
-          <Button type="primary" size={"large"} disabled>
+          <Button type="primary" className="super-lg" size={"large"} disabled>
             关闭系统
           </Button>
         </Row>

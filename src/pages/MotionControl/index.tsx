@@ -44,20 +44,20 @@ export default () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Row type="flex" justify="center" align="top" gutter={40}>
-        <Button type="primary" size={"large"} onClick={()=>buttonHandler(state.orderIndex.start)}>
+        <Button type="primary" className="super-lg" size={"large"} onClick={()=>buttonHandler(state.orderIndex.start)}>
           开始
         </Button>
-        <Button type="primary" size={"large"} onClick={()=>buttonHandler(state.orderIndex.pause)}>
+        <Button type="primary" className="super-lg" size={"large"} onClick={()=>buttonHandler(state.orderIndex.pause)}>
           暂停
         </Button>
       </Row>
       <Row type="flex" justify="center" align="top" gutter={40}>
-        <Button type="primary" size={"large"} onClick={()=>buttonHandler(state.orderIndex.finish)}>
+        <Button type="primary" className="super-lg" size={"large"} onClick={()=>buttonHandler(state.orderIndex.finish)}>
           终止
         </Button>
-        <Button type="primary" size={"large"} disabled>
+        <Button type="primary" className="super-lg" size={"large"} disabled>
           加车
         </Button>
       </Row>

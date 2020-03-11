@@ -108,6 +108,11 @@ export default {
               component: './Control',
             },
             {
+              path: '/account',
+              name: 'account',
+              component: './account',
+            },
+            {
               path: '/admin',
               name: 'admin',
               component: './Admin',
@@ -168,11 +173,11 @@ export default {
   manifest: {
     basePath: '/',
   }, // chainWebpack: webpackPlugin,
-  proxy:{
-    '/api':{
+  proxy: {
+    '/api': {
       target: 'http://localhost:4000',
       changeOrigin: true,
-      pathRewrite: {'':''},
+      pathRewrite: { '': '' },
     },
-  }
+  },
 };
